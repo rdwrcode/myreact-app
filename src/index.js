@@ -4,6 +4,6 @@ import App from './App';
 import './index.css';
 
 ReactDOM.render(
-  <App />,
+  <App result="You are a great listener" others="other inputs" />,
   document.getElementById('root')
 );
