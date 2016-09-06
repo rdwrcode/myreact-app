@@ -2,13 +2,18 @@ import React, { Component } from 'react';
 import Counter from './Counter';
 import Weather from './Weather';
 import logo from './logo.svg';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import mainReducer from './reducers';
 
+import thunkMiddleware from 'redux-thunk';
+
 import './App.css';
 
-const store = createStore(mainReducer);
+const store = createStore(
+  mainReducer, 
+  applyMiddleware(thunkMiddleware)
+);
 
 class App extends Component {
   

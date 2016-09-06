@@ -1,12 +1,10 @@
 import React from 'react';
-import xhr from 'xhr';
+//import xhr from 'xhr';
 import Plot from './Plot';
 import { connect } from 'react-redux';
-import { 
+import {
+  fetchData, 
   changeLocation, 
-  setData,
-  setDates,
-  setTemps,
   setSelectedTemp, 
   setSelectedDate } from './actions';
 
@@ -22,27 +20,7 @@ class Weather extends React.Component {
     let urlSuffix = '&APPID=dbe69e56e7ee5f981d76c3e77bbb45c0&units=metric';
     let url = urlPrefix + location + urlSuffix;
 
-    let self = this;
-
-    xhr({
-      url: url
-    }, function (err, data) {
-      let body = JSON.parse(data.body);
-      let list = body.list;
-      let dates = [];
-      let temps = [];
-      for (let i = 0; i < list.length; i++) {
-        dates.push(list[i].dt_txt);
-        temps.push(list[i].main.temp);
-      }
-
-      self.props.dispatch(setData(body));
-      self.props.dispatch(setDates(dates));
-      self.props.dispatch(setTemps(temps));
-      self.props.dispatch(setSelectedTemp(null));
-      self.props.dispatch(setSelectedDate(''));
-    });
-
+    this.props.dispatch(fetchData(url));
   };
 
   changeLocation = (evt) => {
