@@ -1,6 +1,8 @@
 import React from 'react';
 import xhr from 'xhr';
 import Plot from './Plot';
+import { connect } from 'react-redux';
+import { changeLocation } from './actions';
 
 class Weather extends React.Component {
   state = {
@@ -18,7 +20,7 @@ class Weather extends React.Component {
     evt.preventDefault();
     //console.log('fetch data!');
 
-    let location = encodeURIComponent(this.state.location);
+    let location = encodeURIComponent(this.props.location);
 
     let urlPrefix = 'http://api.openweathermap.org/data/2.5/forecast?q=';
     let urlSuffix = '&APPID=dbe69e56e7ee5f981d76c3e77bbb45c0&units=metric';
@@ -54,9 +56,7 @@ class Weather extends React.Component {
   };
 
   changeLocation = (evt) => {
-    this.setState({
-      location: evt.target.value
-    });
+    this.props.dispatch(changeLocation(evt.target.value));
   };
 
   onPlotClick = (data) => {
@@ -85,7 +85,7 @@ class Weather extends React.Component {
             <input 
               placeholder={"City, Country"} 
               type="text" 
-              value={this.state.location}
+              value={this.props.location}
               onChange={this.changeLocation}
             />
           </label>
@@ -115,4 +115,11 @@ class Weather extends React.Component {
   }
 }
 
-export default Weather;
+function mapStateToProps(state) {
+    return {
+        location: state.location
+    };
+}
+
+//export default Weather;
+export default connect(mapStateToProps)(Weather);

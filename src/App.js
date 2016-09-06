@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import Counter from './Counter';
 import Weather from './Weather';
 import logo from './logo.svg';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import mainReducer from './reducers';
+
 import './App.css';
 
+const store = createStore(mainReducer);
+
 class App extends Component {
-  
   
   render() {
     return (
@@ -15,7 +20,9 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <Counter />
-        <Weather />
+        <Provider store={store}>
+          <Weather />
+        </Provider>
       </div>
     );
   }

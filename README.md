@@ -10,7 +10,7 @@ $npm i -g create-react-app
 At this version, you will need to install some packages *globally*:
 
 ```bash
-npm install -g eslint babel-eslint eslint-plugin-react eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-flowtype
+$npm install -g eslint babel-eslint eslint-plugin-react eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-flowtype
 ```
 
 Now create the app:
@@ -45,12 +45,12 @@ For the project to build, **these files must exist with exact filenames**:
 
 You can delete or rename the other files. You are ready to go.
 
-## Compoent
+## React Compoent
 
 Add two components. One is Counter and the other Button.
 Use props and states inside the Counter component.
 
-## Weather
+## Weather Component
 Add Weather component.
 To get the access to [Open Weather Map](http://openweathermap.org/API), sign in there and get the API key.
 So the request is as follows:
@@ -61,7 +61,7 @@ q=New%20York%2C%20USA&APPID=dbe69e56e7ee5f981d76c3e77bbb45c0&units=metric
 
 NPM module [xhr](https://github.com/Raynos/xhr) can be found here.
 
-## Plot
+## Plot Component
 Add this to the index.html. The forecast is shown in a beatiful graph by Plotly.
 
 ```
@@ -70,6 +70,14 @@ Add this to the index.html. The forecast is shown in a beatiful graph by Plotly.
 New component Plot.js is added to the project and Weather component is modified to accommodate the necessary changes.
 
 Pay attention to the usage of lifecycle API of React component in Plot.js.
+
+## Redux
+```
+$npm i -S redux react-redux
+```
+This is to introduce Redux for state management. 
+* To respond to location chnages, checked both actions.js and reducer.js.
+
 
 
 
