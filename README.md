@@ -77,6 +77,8 @@ $npm i -S redux react-redux
 ```
 This is to introduce Redux for state management. 
 * To respond to location chnages, checked both actions.js and reducer.js.
+* To respond to the selection on the forecast graph, add more actions in both actions.js and reducer.js.
+
 
 
 

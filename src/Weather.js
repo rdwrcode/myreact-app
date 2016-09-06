@@ -2,18 +2,13 @@ import React from 'react';
 import xhr from 'xhr';
 import Plot from './Plot';
 import { connect } from 'react-redux';
-import { changeLocation } from './actions';
+import { changeLocation, setSelectedTemp, setSelectedDate } from './actions';
 
 class Weather extends React.Component {
   state = {
-    location: '',
     data: {},
     dates: [],
-    temps: [],
-    selected: {
-      date: '',
-      temp: null
-    }
+    temps: []
   };
 
   fetchData = (evt) => {
@@ -44,13 +39,11 @@ class Weather extends React.Component {
       self.setState({
         data: body,
         dates: dates,
-        temps: temps,
-        selected: {
-          date: '',
-          temp: null
-        }
+        temps: temps
       });
-      //console.log(data);
+
+      self.props.dispatch(setSelectedTemp(null));
+      self.props.dispatch(setSelectedDate(''));
     });
 
   };
@@ -62,12 +55,9 @@ class Weather extends React.Component {
   onPlotClick = (data) => {
     //console.log(data);
     if (data.points) {
-      this.setState({
-        selected: {
-          date: data.points[0].x,
-          temp: data.points[0].y
-        }
-      });
+      //const number = data.points[0].pointNumber;
+      this.props.dispatch(setSelectedDate(data.points[0].x));
+      this.props.dispatch(setSelectedTemp(data.points[0].y));
     }
   };
 
@@ -94,11 +84,11 @@ class Weather extends React.Component {
           <div className="wrapper">
             <p className="temp-wrapper">
               <span className="temp">
-                { this.state.selected.temp ? this.state.selected.temp : currentTemp }
+                { this.props.selected.temp ? this.props.selected.temp : currentTemp }
               </span>
               <span className="temp-symbol">°C</span>
               <span className="temp-date">
-                { this.state.selected.temp ? this.state.selected.date : ''}
+                { this.props.selected.temp ? this.props.selected.date : ''}
               </span>
             </p>
             <h2>Forecast</h2>
@@ -116,9 +106,10 @@ class Weather extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return {
-        location: state.location
-    };
+  return {
+    location: state.location,
+    selected: state.selected
+  };
 }
 
 //export default Weather;
