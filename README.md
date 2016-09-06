@@ -61,4 +61,16 @@ q=New%20York%2C%20USA&APPID=dbe69e56e7ee5f981d76c3e77bbb45c0&units=metric
 
 NPM module [xhr](https://github.com/Raynos/xhr) can be found here.
 
+## Plot
+Add this to the index.html. The forecast is shown in a beatiful graph by Plotly.
+
+```
+<script src="https://cdn.plot.ly/plotly-1.8.0.min.js"></script>
+```
+New component Plot.js is added to the project and Weather component is modified to accommodate the necessary changes.
+
+Pay attention to the usage of lifecycle API of React component in Plot.js.
+
+
+
 
