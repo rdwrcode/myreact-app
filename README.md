@@ -45,4 +45,20 @@ For the project to build, **these files must exist with exact filenames**:
 
 You can delete or rename the other files. You are ready to go.
 
-## 
+## Compoent
+
+Add two components. One is Counter and the other Button.
+Use props and states inside the Counter component.
+
+## Weather
+Add Weather component.
+To get the access to [Open Weather Map](http://openweathermap.org/API), sign in there and get the API key.
+So the request is as follows:
+```
+http://api.openweathermap.org/data/2.5/forecast?
+q=New%20York%2C%20USA&APPID=dbe69e56e7ee5f981d76c3e77bbb45c0&units=metric
+```
+
+NPM module [xhr](https://github.com/Raynos/xhr) can be found here.
+
+
