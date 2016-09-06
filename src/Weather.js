@@ -2,15 +2,16 @@ import React from 'react';
 import xhr from 'xhr';
 import Plot from './Plot';
 import { connect } from 'react-redux';
-import { changeLocation, setSelectedTemp, setSelectedDate } from './actions';
+import { 
+  changeLocation, 
+  setData,
+  setDates,
+  setTemps,
+  setSelectedTemp, 
+  setSelectedDate } from './actions';
 
 class Weather extends React.Component {
-  state = {
-    data: {},
-    dates: [],
-    temps: []
-  };
-
+  
   fetchData = (evt) => {
     evt.preventDefault();
     //console.log('fetch data!');
@@ -35,13 +36,9 @@ class Weather extends React.Component {
         temps.push(list[i].main.temp);
       }
 
-      // selected is set to the default
-      self.setState({
-        data: body,
-        dates: dates,
-        temps: temps
-      });
-
+      self.props.dispatch(setData(body));
+      self.props.dispatch(setDates(dates));
+      self.props.dispatch(setTemps(temps));
       self.props.dispatch(setSelectedTemp(null));
       self.props.dispatch(setSelectedDate(''));
     });
@@ -55,16 +52,16 @@ class Weather extends React.Component {
   onPlotClick = (data) => {
     //console.log(data);
     if (data.points) {
-      //const number = data.points[0].pointNumber;
-      this.props.dispatch(setSelectedDate(data.points[0].x));
-      this.props.dispatch(setSelectedTemp(data.points[0].y));
+      const number = data.points[0].pointNumber;
+      this.props.dispatch(setSelectedDate(this.props.dates[number]));
+      this.props.dispatch(setSelectedTemp(this.props.temps[number]));
     }
   };
 
   render() {
     let currentTemp = 'not loaded yet';
-    if (this.state.data.list) {
-      currentTemp = this.state.data.list[0].main.temp;
+    if (this.props.data.list) {
+      currentTemp = this.props.data.list[0].main.temp;
     }
 
     return (
@@ -80,7 +77,7 @@ class Weather extends React.Component {
             />
           </label>
         </form>
-        {(this.state.data.list) ? (
+        {(this.props.data.list) ? (
           <div className="wrapper">
             <p className="temp-wrapper">
               <span className="temp">
@@ -93,8 +90,8 @@ class Weather extends React.Component {
             </p>
             <h2>Forecast</h2>
               <Plot
-                xData={this.state.dates}
-                yData={this.state.temps}
+                xData={this.props.dates}
+                yData={this.props.temps}
                 onPlotClick={this.onPlotClick}
                 type="scatter"
               />
@@ -106,10 +103,7 @@ class Weather extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return {
-    location: state.location,
-    selected: state.selected
-  };
+  return state;
 }
 
 //export default Weather;
