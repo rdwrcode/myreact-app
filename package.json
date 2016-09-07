@@ -1,6 +1,7 @@
 {
   "name": "myreact-app",
-  "version": "0.1.0",
+  "version": "0.6.0",
+  "description": "test now with react and express",
   "private": true,
   "devDependencies": {
     "react-scripts": "0.4.1"
@@ -18,6 +19,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "test1": "npm run test -- src/__tests__/add.test.js",
+    "testv": "npm run test -- --verbose",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
