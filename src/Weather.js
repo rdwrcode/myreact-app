@@ -7,6 +7,7 @@ import {
   changeLocation, 
   setSelectedTemp, 
   setSelectedDate } from './actions';
+//import { toJS } from 'immutable';
 
 class Weather extends React.Component {
   
@@ -81,7 +82,7 @@ class Weather extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return state;
+  return state.toJS();
 }
 
 //export default Weather;

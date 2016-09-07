@@ -22,6 +22,10 @@ class Plot extends React.Component {
     document.getElementById('plot').on('plotly_click', this.props.onPlotClick);
   }
 
+  shouldComponentUpdate(nextProps) {
+    return this.props !== nextProps;
+  }
+
   componentDidMount() {
     this.drawPlot();
   }
@@ -31,6 +35,7 @@ class Plot extends React.Component {
   }
 
   render() {
+    console.log('RENDER PLOT');
     return (
       <div id="plot"></div>
     );

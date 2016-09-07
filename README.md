@@ -84,6 +84,10 @@ This is to introduce Redux for state management.
 npm i -S redux-thunk
 ```
 
+## immutable.js
+```
+npm i -S immutable
+```
 
 
 
