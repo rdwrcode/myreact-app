@@ -15,7 +15,7 @@ class Weather extends React.Component {
     evt.preventDefault();
     //console.log('fetch data!');
 
-    let location = encodeURIComponent(this.props.location);
+    let location = encodeURIComponent(this.props.redux.get('location'));
 
     let urlPrefix = 'http://api.openweathermap.org/data/2.5/forecast?q=';
     let urlSuffix = '&APPID=dbe69e56e7ee5f981d76c3e77bbb45c0&units=metric';
@@ -39,8 +39,9 @@ class Weather extends React.Component {
 
   render() {
     let currentTemp = 'not loaded yet';
-    if (this.props.data.list) {
-      currentTemp = this.props.data.list[0].main.temp;
+    if (this.props.redux.getIn(['data'], ['list'])) {
+      //currentTemp = this.props.data.list[0].main.temp;
+      currentTemp = this.props.redux.getIn(['data', 'list', '0', 'main', 'temp']);
     }
 
     return (
@@ -51,26 +52,26 @@ class Weather extends React.Component {
             <input 
               placeholder={"City, Country"} 
               type="text" 
-              value={this.props.location}
+              value={this.props.redux.get('location')}
               onChange={this.changeLocation}
             />
           </label>
         </form>
-        {(this.props.data.list) ? (
+        {(this.props.redux.getIn(['data', 'list'])) ? (
           <div className="wrapper">
             <p className="temp-wrapper">
               <span className="temp">
-                { this.props.selected.temp ? this.props.selected.temp : currentTemp }
+                { this.props.redux.getIn(['selected', 'temp']) ? this.props.redux.getIn(['selected', 'temp']) : currentTemp }
               </span>
               <span className="temp-symbol">°C</span>
               <span className="temp-date">
-                { this.props.selected.temp ? this.props.selected.date : ''}
+                { this.props.redux.getIn(['selected', 'temp']) ? this.props.redux.getIn(['selected', 'date']) : ''}
               </span>
             </p>
             <h2>Forecast</h2>
               <Plot
-                xData={this.props.dates}
-                yData={this.props.temps}
+                xData={this.props.redux.get('dates')}
+                yData={this.props.redux.get('temps')}
                 onPlotClick={this.onPlotClick}
                 type="scatter"
               />
@@ -82,7 +83,9 @@ class Weather extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return state.toJS();
+  return {
+    redux: state
+  };
 }
 
 //export default Weather;
