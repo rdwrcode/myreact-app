@@ -23,9 +23,17 @@ class Plot extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
+    const xDataChanged = !this.props.xData.equals(nextProps.xData);
+    const yDataChanged = !this.props.yData.equals(nextProps.yData);
+
+    return xDataChanged || yDataChanged;
+  }
+/*
+  shouldComponentUpdate(nextProps) {
     return this.props !== nextProps;
     //return !this.props.equals(nextProps);
   }
+*/
 
   componentDidMount() {
     this.drawPlot();
