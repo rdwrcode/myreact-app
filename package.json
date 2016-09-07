@@ -4,7 +4,8 @@
   "description": "test now with react and express",
   "private": true,
   "devDependencies": {
-    "react-scripts": "0.4.1"
+    "react-scripts": "0.4.1",
+    "react-test-renderer": "^15.3.1"
   },
   "dependencies": {
     "immutable": "^3.8.1",

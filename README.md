@@ -89,8 +89,15 @@ npm i -S redux-thunk
 npm i -S immutable
 ```
 
+## test with jest
+* test pure function such as reducers
+* test component
+```
+$npm i -D react-test-renderer
+```
+There are still some problems with Weather component while testing with Jest. Need to dive into Jest documents and some examples.
 
-
-
-
+Thanks to Max Stoiber: 
+[react tutorial](http://academy.plot.ly/react/)
+[code](https://github.com/plotly/academy/tree/gh-pages/weather-app)
 
