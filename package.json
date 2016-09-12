@@ -3,7 +3,7 @@
   "version": "0.6.0",
   "description": "test now with react and express",
   "private": true,
-  "homepage": "http://rdwrcode.github.io/myreact-app",
+  "homepage": "https://rdwrcode.github.io/myreact-app",
   "devDependencies": {
     "react-scripts": "0.4.1",
     "react-test-renderer": "^15.3.1"
