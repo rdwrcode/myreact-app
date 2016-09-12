@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Counter from './Counter';
 import Weather from './Weather';
+import CfgCounter from './CfgCounter';
+
 import logo from './logo.svg';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -25,6 +27,7 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <Counter />
+        <CfgCounter />
         <Provider store={store}>
           <Weather />
         </Provider>
