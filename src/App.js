@@ -6,6 +6,7 @@ import CfgCounter from './CfgCounter';
 import logo from './logo.svg';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import AnimatedButton from './AnimatedButton';
 import mainReducer from './reducers';
 
 import thunkMiddleware from 'redux-thunk';
@@ -28,6 +29,7 @@ class App extends Component {
         </div>
         <Counter />
         <CfgCounter />
+        <AnimatedButton />
         <Provider store={store}>
           <Weather />
         </Provider>
