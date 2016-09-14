@@ -11,7 +11,7 @@ import range from 'lodash.range';
 const MAIN_BUTTON_DIAM = 90;
 const CHILD_BUTTON_DIAM = 48;
 // The number of child buttons that fly out from the main button
-const NUM_CHILDREN = 5;
+const NUM_CHILDREN = 6;
 // Hard code the position values of the mainButton
 const M_X = 490;
 const M_Y = 450;
@@ -129,6 +129,7 @@ class AnimatedButton extends React.Component {
   }
 
   toggleMenu(e) {
+    console.log("toogle @ x:"+e.clientX+" y:"+e.clientY);
     e.stopPropagation();
     let { isOpen } = this.state;
     this.setState({
@@ -136,7 +137,8 @@ class AnimatedButton extends React.Component {
     });
   }
 
-  closeMenu() {
+  closeMenu(e) {
+    console.log("close @ x:"+e.clientX+" y:"+e.clientY);
     this.setState({ isOpen: false });
   }
 
